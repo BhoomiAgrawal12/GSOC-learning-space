@@ -30,7 +30,7 @@ model_params = {
             "gemini/gemini-2.0-flash",
             "openai/gpt-4o-mini",
             "openai/gpt-4o",
-            "anthropic/claude-3-5-haiku-20241022",
+            "anthropic/claude-haiku-4-5-20251001",
             "ollama/llama3.2",
         ],
         "label": "LLM Model",
@@ -45,6 +45,7 @@ model = ClimateNegotiationModel(
 )
 
 
+@solara.component
 def PledgeBarChart(model):
     """Bar chart of each country's current reduction pledge."""
     update_counter.get()
@@ -56,7 +57,8 @@ def PledgeBarChart(model):
     if not countries or all(a.current_pledge == 0 for a in countries):
         ax.set_title("No pledges yet — click Step to begin")
         ax.set_ylim(0, 100)
-        return solara.FigureMatplotlib(fig)
+        solara.FigureMatplotlib(fig)
+        return
 
     names = [a.country_name for a in countries]
     pledges = [a.current_pledge for a in countries]
@@ -82,7 +84,7 @@ def PledgeBarChart(model):
             )
 
     plt.tight_layout()
-    return solara.FigureMatplotlib(fig)
+    solara.FigureMatplotlib(fig)
 
 
 @solara.component
@@ -116,6 +118,7 @@ def CoalitionStatusPanel(model):
     solara.DataFrame(pd.DataFrame(rows))
 
 
+@solara.component
 def PledgeTrajectoriesChart(model):
     """Line chart of pledge trajectories over rounds."""
     update_counter.get()
@@ -126,11 +129,13 @@ def PledgeTrajectoriesChart(model):
         df = model.datacollector.get_agent_vars_dataframe()
     except Exception:
         ax.set_title("No trajectory data yet")
-        return solara.FigureMatplotlib(fig)
+        solara.FigureMatplotlib(fig)
+        return
 
     if df.empty or "CurrentPledge" not in df.columns:
         ax.set_title("No trajectory data yet — run a few steps")
-        return solara.FigureMatplotlib(fig)
+        solara.FigureMatplotlib(fig)
+        return
 
     id_to_name = {
         a.unique_id: a.country_name
@@ -143,7 +148,8 @@ def PledgeTrajectoriesChart(model):
         pledge_df.columns = [id_to_name.get(c, str(c)) for c in pledge_df.columns]
     else:
         ax.set_title("Run more steps to see trajectories")
-        return solara.FigureMatplotlib(fig)
+        solara.FigureMatplotlib(fig)
+        return
 
     for country in pledge_df.columns:
         ax.plot(pledge_df.index, pledge_df[country], marker="o", label=country, linewidth=2)
@@ -154,7 +160,7 @@ def PledgeTrajectoriesChart(model):
     ax.legend(loc="upper left", fontsize=9)
     ax.set_ylim(0, 100)
     plt.tight_layout()
-    return solara.FigureMatplotlib(fig)
+    solara.FigureMatplotlib(fig)
 
 
 TotalProposalsPlot = make_plot_component("TotalProposals")

@@ -8,12 +8,12 @@ from mesa_llm.reasoning.reasoning import Reasoning
 COUNTRIES: list[dict] = [
     {
         "country_name": "USA",
-        "emissions_per_capita": 14.5,
-        "gdp_per_capita": 65_000,
+        "emissions_per_capita": 14.0,
+        "gdp_per_capita": 76_000,
         "development_status": "developed",
         "system_prompt": (
             "You are the USA's chief climate negotiator. "
-            "The USA is the largest historical emitter with a $65k GDP per capita. "
+            "The USA is the largest historical emitter with a $76k GDP per capita. "
             "You support climate action but insist all major economies — especially "
             "China and India — commit to comparable reductions. You prefer "
             "market-based mechanisms and oppose unilateral economic disadvantages."
@@ -21,8 +21,8 @@ COUNTRIES: list[dict] = [
     },
     {
         "country_name": "EU",
-        "emissions_per_capita": 6.4,
-        "gdp_per_capita": 35_000,
+        "emissions_per_capita": 6.0,
+        "gdp_per_capita": 37_000,
         "development_status": "developed",
         "system_prompt": (
             "You are the EU's chief climate negotiator. "
@@ -34,13 +34,13 @@ COUNTRIES: list[dict] = [
     },
     {
         "country_name": "China",
-        "emissions_per_capita": 7.1,
-        "gdp_per_capita": 12_000,
+        "emissions_per_capita": 8.0,
+        "gdp_per_capita": 12_700,
         "development_status": "developing",
         "system_prompt": (
             "You are China's chief climate negotiator. "
             "China is the world's largest current emitter but still a developing "
-            "economy at $12k GDP per capita. You argue that developed nations caused "
+            "economy at $12.7k GDP per capita. You argue that developed nations caused "
             "most historical emissions and must bear greater financial burdens. "
             "You support long-term goals but resist targets that constrain development "
             "without adequate technology transfer and green finance from rich countries."
@@ -48,12 +48,12 @@ COUNTRIES: list[dict] = [
     },
     {
         "country_name": "India",
-        "emissions_per_capita": 1.9,
-        "gdp_per_capita": 2_200,
+        "emissions_per_capita": 2.0,
+        "gdp_per_capita": 2_500,
         "development_status": "developing",
         "system_prompt": (
             "You are India's chief climate negotiator. "
-            "India has very low per-capita emissions (1.9 tCO2) and a $2.2k GDP. "
+            "India has very low per-capita emissions (2.0 tCO2) and a $2.5k GDP. "
             "You firmly defend common but differentiated responsibilities. "
             "India needs fossil fuel access to develop. You support renewables "
             "but reject targets that deny energy access to 1.4 billion people. "
@@ -62,8 +62,8 @@ COUNTRIES: list[dict] = [
     },
     {
         "country_name": "Brazil",
-        "emissions_per_capita": 2.2,
-        "gdp_per_capita": 8_600,
+        "emissions_per_capita": 2.8,
+        "gdp_per_capita": 10_400,
         "development_status": "developing",
         "system_prompt": (
             "You are Brazil's chief climate negotiator. "
@@ -76,12 +76,12 @@ COUNTRIES: list[dict] = [
     },
     {
         "country_name": "Russia",
-        "emissions_per_capita": 11.4,
-        "gdp_per_capita": 12_000,
+        "emissions_per_capita": 12.5,
+        "gdp_per_capita": 15_000,
         "development_status": "developed",
         "system_prompt": (
             "You are Russia's chief climate negotiator. "
-            "Russia is a major fossil fuel exporter with 11.4 tCO2 per capita. "
+            "Russia is a major fossil fuel exporter with 12.5 tCO2 per capita. "
             "You accept climate science but argue for gradual, technology-led "
             "transitions. You resist aggressive near-term targets that threaten "
             "your fossil fuel revenues. You may agree to modest pledges if given "
