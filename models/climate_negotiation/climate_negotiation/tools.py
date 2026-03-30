@@ -113,7 +113,15 @@ def form_coalition(
     Returns:
         Confirmation of coalition formation and the partners notified.
     """
-    for pid in (partner_ids or []):
+    if isinstance(partner_ids, str):
+        import json
+        try:
+            partner_ids = json.loads(partner_ids)
+        except (json.JSONDecodeError, ValueError):
+            partner_ids = [int(x.strip()) for x in partner_ids.strip("[]").split(",") if x.strip()]
+    partner_ids = [int(pid) for pid in (partner_ids or [])]
+
+    for pid in partner_ids:
         if pid not in agent.coalition_members:
             agent.coalition_members.append(pid)
 
